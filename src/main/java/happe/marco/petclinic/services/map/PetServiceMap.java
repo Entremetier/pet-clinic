@@ -1,11 +1,13 @@
 package happe.marco.petclinic.services.map;
 
 import happe.marco.petclinic.model.Pet;
-import happe.marco.petclinic.services.CrudService;
+import happe.marco.petclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+@Service
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override
     public Set<Pet> findAll() {
