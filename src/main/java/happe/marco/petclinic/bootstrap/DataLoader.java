@@ -1,12 +1,9 @@
 package happe.marco.petclinic.bootstrap;
 
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import happe.marco.petclinic.model.Owner;
-import happe.marco.petclinic.model.Pet;
-import happe.marco.petclinic.model.PetType;
-import happe.marco.petclinic.model.Vet;
+import happe.marco.petclinic.model.*;
 import happe.marco.petclinic.services.OwnerService;
 import happe.marco.petclinic.services.PetTypeService;
+import happe.marco.petclinic.services.SpecialtyService;
 import happe.marco.petclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,16 +16,31 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialtyService specialtyService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialtyService specialtyService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialtyService = specialtyService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
+        int count = petTypeService.findAll().size();
+
+        if (count == 0) {
+            loadData();
+        }
+    }
+
+    //beim persistieren von Daten muss die Methode aufgerufen werden, da sonst die Daten immer wieder in die Datenbank
+    //geschrieben werden, darum mit der if abfrage sicherstellen das die daten noch nicht in der db sind
+    //wenn count 0 ist wird die methode aufgerufen, sonst nicht
+
+    private void loadData() {
         PetType dog = new PetType();
         dog.setName("Dog");
         PetType savedDogPetType = petTypeService.save(dog);
@@ -36,6 +48,18 @@ public class DataLoader implements CommandLineRunner {
         PetType cat = new PetType();
         cat.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
+
+        Speciality radiology = new Speciality();
+        radiology.setDescribtion("Radiology");
+        Speciality savedRadiology = specialtyService.save(radiology);
+
+        Speciality surgery = new Speciality();
+        surgery.setDescribtion("Surgery");
+        Speciality savedSurgery = specialtyService.save(surgery);
+
+        Speciality dentistry = new Speciality();
+        dentistry.setDescribtion("Dentistry");
+        Speciality savedDentistry = specialtyService.save(dentistry);
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Bart");
@@ -74,12 +98,14 @@ public class DataLoader implements CommandLineRunner {
         Vet vet1 = new Vet();
         vet1.setFirstName("Dr. Nick");
         vet1.setLastName("Rivera");
+        vet1.getSpecialties().add(savedSurgery);
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Dr. Julius");
         vet2.setLastName("Hibbert");
+        vet2.getSpecialties().add(savedRadiology);
 
         vetService.save(vet2);
 

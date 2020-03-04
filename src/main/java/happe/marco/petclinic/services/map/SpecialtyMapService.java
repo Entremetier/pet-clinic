@@ -1,11 +1,12 @@
 package happe.marco.petclinic.services.map;
 
-import com.sun.xml.bind.v2.model.core.ID;
 import happe.marco.petclinic.model.Speciality;
 import happe.marco.petclinic.services.SpecialtyService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class SpecialtyMapService extends AbstractMapService<Speciality, Long> implements SpecialtyService {
 
     @Override
