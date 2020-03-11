@@ -2,11 +2,13 @@ package happe.marco.petclinic.services.map;
 
 import happe.marco.petclinic.model.Pet;
 import happe.marco.petclinic.services.PetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile(value = {"default", "map"})
 public class PetMapService extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override

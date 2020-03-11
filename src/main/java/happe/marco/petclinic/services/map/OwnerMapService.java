@@ -5,11 +5,13 @@ import happe.marco.petclinic.model.Pet;
 import happe.marco.petclinic.services.OwnerService;
 import happe.marco.petclinic.services.PetService;
 import happe.marco.petclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile(value = {"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;
