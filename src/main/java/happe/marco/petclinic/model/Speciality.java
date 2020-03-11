@@ -1,14 +1,21 @@
 package happe.marco.petclinic.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "specialties")
 public class Speciality extends BaseEntity {
 
-    private String describtion;
+    @Column(name = "desription")
+    private String description;
 
-    public String getDescribtion() {
-        return describtion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescribtion(String describtion) {
-        this.describtion = describtion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
