@@ -34,6 +34,7 @@ public class VetSDJpaService implements VetService {
 
     @Override
     public Vet findById(Long aLong) {
+        //erklärung befindet sich in OwnerSDJpaService
         return vetRepository.findById(aLong).orElse(null);
     }
 
