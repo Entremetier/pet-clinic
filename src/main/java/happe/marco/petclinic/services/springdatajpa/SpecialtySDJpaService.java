@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Consumer;
 
 @Service
 @Profile(value = "springdatajpa")
@@ -22,10 +21,10 @@ public class SpecialtySDJpaService implements SpecialtyService {
 
     @Override
     public Set<Speciality> findAll() {
-        Set<Speciality> specialitySet = new HashSet<>();
+        Set<Speciality> specialities = new HashSet<>();
         //Methodenreferenz, inner anonym wird im VetSDJpaService gezeigt
-        specialityRepository.findAll().forEach(specialitySet::add);
-        return specialitySet;
+        specialityRepository.findAll().forEach(specialities::add);
+        return specialities;
     }
 
     @Override

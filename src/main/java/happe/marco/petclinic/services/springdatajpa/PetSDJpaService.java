@@ -21,10 +21,10 @@ public class PetSDJpaService implements PetService {
 
     @Override
     public Set<Pet> findAll() {
-        Set<Pet> petSet = new HashSet<>();
+        Set<Pet> pets = new HashSet<>();
         //Methodenreferenz, inner anonym wird im VetSDJpaService gezeigt
-        petRepository.findAll().forEach(petSet::add);
-        return petSet;
+        petRepository.findAll().forEach(pets::add);
+        return pets;
     }
 
     @Override
