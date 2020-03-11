@@ -7,6 +7,7 @@ import happe.marco.petclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.function.Consumer;
 
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
@@ -36,10 +37,13 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
     public Vet save(Vet object) {
 
         if (object.getSpecialties().size() > 0){
-            object.getSpecialties().forEach(speciality -> {
-                if (speciality.getId() == null){
-                    Speciality savedSpecialty = specialtyService.save(speciality);
-                    speciality.setId(savedSpecialty.getId());
+            object.getSpecialties().forEach(new Consumer<Speciality>() {
+                @Override
+                public void accept(Speciality speciality) {
+                    if (speciality.getId() == null) {
+                        Speciality savedSpecialty = specialtyService.save(speciality);
+                        speciality.setId(savedSpecialty.getId());
+                    }
                 }
             });
         }
