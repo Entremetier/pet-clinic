@@ -7,6 +7,8 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 @MappedSuperclass
+//@MappedSuperclass zeigt in JPA an das es sich um eine Baseclass handelt und das andere Klassen von dieser Klasse erben werden.
+//Gleichzeitig sagen wir JPA das diese Klasse nicht zur Datenbank hinzugefügt werden muss.
 public class BaseEntity implements Serializable {
 
     @Id
