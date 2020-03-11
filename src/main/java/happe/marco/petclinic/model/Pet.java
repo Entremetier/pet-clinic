@@ -2,6 +2,8 @@ package happe.marco.petclinic.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pets")
@@ -26,6 +28,11 @@ public class Pet extends BaseEntity {
 
     @Column(name = "birth_date")
     private LocalDate birthDate;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    //One Pet kann Many visits haben, mapped wird es durch die Pet pet eigenschaft in Visit
+    //wird das Pet aus der Datenbank gelöscht werden auch die visits des Pet's gelöscht (cascade = CascadeType.ALL)
+    private Set<Visit> visits = new HashSet<>();
 
     public String getName() {
         return name;
@@ -57,5 +64,13 @@ public class Pet extends BaseEntity {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Set<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(Set<Visit> visits) {
+        this.visits = visits;
     }
 }
