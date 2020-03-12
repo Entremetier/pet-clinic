@@ -60,6 +60,12 @@ public class DataLoader implements CommandLineRunner {
         dentistry.setDescription("Dentistry");
         Speciality savedDentistry = specialtyService.save(dentistry);
 
+
+
+        //mit dieser Zeile wird ein objekt erstellt
+        Owner.builder().firstName("Marco").lastName("Happe").address("Zuhause").city("Wien").telephone("555987").build();
+
+
         Owner owner1 = new Owner();
         owner1.setFirstName("Bart");
         owner1.setLastName("Simpson");
@@ -105,6 +111,7 @@ public class DataLoader implements CommandLineRunner {
         vet1.setFirstName("Dr. Nick");
         vet1.setLastName("Rivera");
         vet1.getSpecialties().add(savedSurgery);
+//        vet1.getSpecialties().add(savedDentistry);
 
         vetService.save(vet1);
 
