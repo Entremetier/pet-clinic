@@ -2,6 +2,8 @@ package happe.marco.petclinic.services.springdatajpa;
 
 import happe.marco.petclinic.model.Owner;
 import happe.marco.petclinic.repositories.OwnerRepository;
+import happe.marco.petclinic.repositories.PetRepository;
+import happe.marco.petclinic.repositories.PetTypeRepository;
 import happe.marco.petclinic.services.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,14 @@ import java.util.function.Consumer;
 public class OwnerSDJpaService implements OwnerService {
 
     private final OwnerRepository ownerRepository;
+    private final PetRepository petRepository;
+    private final PetTypeRepository petTypeRepository;
 
-    public OwnerSDJpaService(OwnerRepository ownerRepository) {
+    public OwnerSDJpaService(OwnerRepository ownerRepository, PetRepository petRepository,
+                             PetTypeRepository petTypeRepository) {
         this.ownerRepository = ownerRepository;
+        this.petRepository = petRepository;
+        this.petTypeRepository = petTypeRepository;
     }
 
     @Override
