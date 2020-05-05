@@ -39,6 +39,7 @@ public class DataLoader implements CommandLineRunner {
     //geschrieben werden, darum mit der if abfrage sicherstellen das die daten noch nicht in der db sind
     //wenn count 0 ist wird die methode aufgerufen, sonst nicht
 
+
     private void loadData() {
         PetType dog = new PetType();
         dog.setName("Dog");
