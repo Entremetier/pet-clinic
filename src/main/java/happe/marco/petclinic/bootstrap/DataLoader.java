@@ -99,6 +99,13 @@ public class DataLoader implements CommandLineRunner {
 
         ownerService.save(owner2);
 
+        Visit knechtRuprecht = new Visit();
+        knechtRuprecht.setPet(bartsPet);
+        knechtRuprecht.setDate(LocalDate.now());
+        knechtRuprecht.setDescription("Broken Leg");
+
+        visitService.save(knechtRuprecht);
+
         Visit snowBallVisitOne = new Visit();
         snowBallVisitOne.setPet(lisasPet);
         snowBallVisitOne.setDate(LocalDate.now());
