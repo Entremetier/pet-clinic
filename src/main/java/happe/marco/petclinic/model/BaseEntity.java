@@ -26,4 +26,7 @@ public class BaseEntity implements Serializable {
     // Long wird als boxtype verwendet und nicht als primitiver datentyp long (dieses vorgehen wird von hibernate empfohlen da ein
     // boxtype  null sein kann und ein primitver Datentyp kann es nicht)
 
+    public boolean isNew() {
+        return this.id == null;
+    }
 }
