@@ -11,8 +11,8 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping("/oups")
-    public String oupsLink(){
-        return "notImplemented";
-    }
+//    @RequestMapping("/oups")
+//    public String oupsLink(){
+//        return "notImplemented";
+//    }
 }
